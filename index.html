@@ -1,0 +1,131 @@
+<!DOCTYPE html><html lang="ru" style=""><svg class="inline-defs-container" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"></svg><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Схема раскладки солнечных панелей</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .font-mono-code {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .grid-bg {
+      background-size: 24px 24px;
+      background-image: 
+        linear-gradient(to right, rgba(226, 232, 240, 0.6) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(226, 232, 240, 0.6) 1px, transparent 1px);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen antialiased flex flex-col">
+
+  <!-- Header -->
+  <header class="border-b border-slate-200 bg-white/80 backdrop-blur sticky top-0 z-20">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-600 shadow-sm">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+          </svg>
+        </div>
+        <div>
+          <h1 class="text-lg font-bold text-slate-900 leading-tight">Инженерная схема раскладки СЭС</h1>
+          <p class="text-xs text-slate-500">План размещения фотоэлектрических модулей на скате крыши</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200/90"><span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>Расчет: 10 панелей (2×5) • 6.15 кВт (превышение)</span>
+        <button onclick="window.print()" class="px-3.5 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-xs font-semibold text-slate-700 shadow-sm transition flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+          Печать / Экспорт
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Layout -->
+  <main class="max-w-7xl mx-auto px-6 py-6 w-full flex-1 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+    <!-- Left / Center Blueprint Graphic Canvas (8 Cols) -->
+    <div class="lg:col-span-8 flex flex-col gap-4">
+      <div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden flex flex-col">
+        
+        <!-- Canvas Bar -->
+        <div class="px-5 py-3 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+          <div class="flex items-center gap-2 text-xs font-semibold text-slate-700">
+            <span class="w-2.5 h-2.5 rounded-sm bg-blue-600 inline-block"></span>
+            Чертеж в масштабе (М 1:1) • Вид сверху (Top Down)
+          </div>
+          <div class="flex items-center gap-4 text-xs font-mono-code text-slate-500"><span class="">Крыша: <b>550 × 435 см</b></span><span class="">Массив: <b>573 × 456 см</b> (Внимание: ширина и высота)</span></div>
+        </div>
+
+        <!-- Interactive Blueprint / SVG -->
+        <div class="p-4 md:p-8 grid-bg overflow-x-auto flex items-center justify-center min-h-[580px]">
+          
+          <!-- SVG Container (ViewBox adjusted for roof 550x435 + margin for dimension lines) -->
+          <!-- Roof: width 550cm, height 435cm.
+               Panel: 113cm (W) x 227cm (H) in portrait.
+               2 rows of height: 227 + 2 + 227 = 456 cm.
+               Note: 456cm > 435cm roof height by 21cm (overhang/свес 10.5cm с каждой стороны или свес на карниз 21см).
+               Horizontal: 4 panels = 4 * 113 + 3 * 2 = 452 + 6 = 458 cm <= 550 cm (отступы по краям по 46 см).
+          -->
+          <svg class="w-full max-w-[700px] h-auto drop-shadow-sm select-none" viewBox="-80 -60 720 570" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#64748b"></path></marker><marker id="arrow-blue" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#2563eb"></path></marker><marker id="arrow-amber" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#d97706"></path></marker><pattern id="solar-grid" width="22.6" height="37.8" patternUnits="userSpaceOnUse"><rect width="22.6" height="37.8" fill="#1e3a8a" stroke="#2563eb" stroke-width="0.75"></rect><line x1="7.5" y1="0" x2="7.5" y2="37.8" stroke="#60a5fa" stroke-width="0.3" stroke-dasharray="2,1"></line><line x1="15.1" y1="0" x2="15.1" y2="37.8" stroke="#60a5fa" stroke-width="0.3" stroke-dasharray="2,1"></line></pattern><pattern id="roof-texture" width="20" height="20" patternUnits="userSpaceOnUse"><rect width="20" height="20" fill="#f8fafc"></rect><path d="M 0 20 L 20 0 M 0 0 L 20 20" stroke="#f1f5f9" stroke-width="1"></path></pattern></defs><rect x="0" y="0" width="550" height="435" rx="4" fill="url(#roof-texture)" stroke="#94a3b8" stroke-width="2.5" stroke-dasharray="8 5"></rect><text x="15" y="25" font-size="11" font-weight="700" fill="#94a3b8" letter-spacing="1">ПЛОЩАДКА КРЫШИ (550 × 435 см)</text><g stroke="#64748b" stroke-width="1.2"><line x1="0" y1="-25" x2="550" y2="-25" marker-start="url(#arrow)" marker-end="url(#arrow)"></line><line x1="0" y1="-35" x2="0" y2="0" stroke-dasharray="3,3" stroke-width="1"></line><line x1="550" y1="-35" x2="550" y2="0" stroke-dasharray="3,3" stroke-width="1"></line></g><rect x="235" y="-37" width="80" height="22" rx="4" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"></rect><text x="275" y="-22" font-size="12" font-family="'JetBrains Mono', monospace" font-weight="bold" fill="#334155" text-anchor="middle">550 см</text><g stroke="#64748b" stroke-width="1.2"><line x1="-30" y1="0" x2="-30" y2="435" marker-start="url(#arrow)" marker-end="url(#arrow)"></line><line x1="-40" y1="0" x2="0" y2="0" stroke-dasharray="3,3" stroke-width="1"></line><line x1="-40" y1="435" x2="0" y2="435" stroke-dasharray="3,3" stroke-width="1"></line></g><g transform="translate(-42, 218) rotate(-90)"><rect x="-38" y="-11" width="76" height="22" rx="4" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"></rect><text x="0" y="4" font-size="12" font-family="'JetBrains Mono', monospace" font-weight="bold" fill="#334155" text-anchor="middle">435 см</text></g><rect x="-11.5" y="-10.5" width="573" height="456" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.6"></rect><g id="p1-1"><rect x="-11.5" y="-10.5" width="113" height="227" rx="3" fill="url(#solar-grid)" stroke="#0f172a" stroke-width="2"></rect><rect x="-8.5" y="-7.5" width="107" height="221" rx="2" fill="none" stroke="#60a5fa" stroke-width="1" opacity="0.8"></rect><text x="45" y="103" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="bold" fill="#ffffff" text-anchor="middle">П1 (Ряд 1)</text><text x="45" y="118" font-size="9" fill="#93c5fd" text-anchor="middle">113 × 227 см</text></g><g id="p1-2"><rect x="103.5" y="-10.5" width="113" height="227" rx="3" fill="url(#solar-grid)" stroke="#0f172a" stroke-width="2"></rect><rect x="106.5" y="-7.5" width="107" height="221" rx="2" fill="none" stroke="#60a5fa" stroke-width="1" opacity="0.8"></rect><text x="160" y="103" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="bold" fill="#ffffff" text-anchor="middle">П2 (Ряд 1)</text><text x="160" y="118" font-size="9" fill="#93c5fd" text-anchor="middle">113 × 227 см</text></g><g id="p1-3"><rect x="218.5" y="-10.5" width="113" height="227" rx="3" fill="url(#solar-grid)" stroke="#0f172a" stroke-width="2"></rect><rect x="221.5" y="-7.5" width="107" height="221" rx="2" fill="none" stroke="#60a5fa" stroke-width="1" opacity="0.8"></rect><text x="275" y="103" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="bold" fill="#ffffff" text-anchor="middle">П3 (Ряд 1)</text><text x="275" y="118" font-size="9" fill="#93c5fd" text-anchor="middle">113 × 227 см</text></g><g id="p1-4"><rect x="333.5" y="-10.5" width="113" height="227" rx="3" fill="url(#solar-grid)" stroke="#0f172a" stroke-width="2"></rect><rect x="336.5" y="-7.5" width="107" height="221" rx="2" fill="none" stroke="#60a5fa" stroke-width="1" opacity="0.8"></rect><text x="390" y="103" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="bold" fill="#ffffff" text-anchor="middle">П4 (Ряд 1)</text><text x="390" y="118" font-size="9" fill="#93c5fd" text-anchor="middle">113 × 227 см</text></g><g id="p1-5"><rect x="448.5" y="-10.5" width="113" height="227" rx="3" fill="url(#solar-grid)" stroke="#0f172a" stroke-width="2"></rect><rect x="451.5" y="-7.5" width="107" height="221" rx="2" fill="none" stroke="#60a5fa" stroke-width="1" opacity="0.8"></rect><text x="505" y="103" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="bold" fill="#ffffff" text-anchor="middle">П5 (Ряд 1)</text><text x="505" y="118" font-size="9" fill="#93c5fd" text-anchor="middle">113 × 227 см</text></g><g id="p2-1"><rect x="-11.5" y="218.5" width="113" height="227" rx="3" fill="url(#solar-grid)" stroke="#0f172a" stroke-width="2"></rect><rect x="-8.5" y="221.5" width="107" height="221" rx="2" fill="none" stroke="#60a5fa" stroke-width="1" opacity="0.8"></rect><text x="45" y="332" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="bold" fill="#ffffff" text-anchor="middle">П6 (Ряд 2)</text><text x="45" y="347" font-size="9" fill="#93c5fd" text-anchor="middle">113 × 227 см</text></g><g id="p2-2"><rect x="103.5" y="218.5" width="113" height="227" rx="3" fill="url(#solar-grid)" stroke="#0f172a" stroke-width="2"></rect><rect x="106.5" y="221.5" width="107" height="221" rx="2" fill="none" stroke="#60a5fa" stroke-width="1" opacity="0.8"></rect><text x="160" y="332" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="bold" fill="#ffffff" text-anchor="middle">П7 (Ряд 2)</text><text x="160" y="347" font-size="9" fill="#93c5fd" text-anchor="middle">113 × 227 см</text></g><g id="p2-3"><rect x="218.5" y="218.5" width="113" height="227" rx="3" fill="url(#solar-grid)" stroke="#0f172a" stroke-width="2"></rect><rect x="221.5" y="221.5" width="107" height="221" rx="2" fill="none" stroke="#60a5fa" stroke-width="1" opacity="0.8"></rect><text x="275" y="332" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="bold" fill="#ffffff" text-anchor="middle">П8 (Ряд 2)</text><text x="275" y="347" font-size="9" fill="#93c5fd" text-anchor="middle">113 × 227 см</text></g><g id="p2-4"><rect x="333.5" y="218.5" width="113" height="227" rx="3" fill="url(#solar-grid)" stroke="#0f172a" stroke-width="2"></rect><rect x="336.5" y="221.5" width="107" height="221" rx="2" fill="none" stroke="#60a5fa" stroke-width="1" opacity="0.8"></rect><text x="390" y="332" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="bold" fill="#ffffff" text-anchor="middle">П9 (Ряд 2)</text><text x="390" y="347" font-size="9" fill="#93c5fd" text-anchor="middle">113 × 227 см</text></g><g id="p2-5"><rect x="448.5" y="218.5" width="113" height="227" rx="3" fill="url(#solar-grid)" stroke="#0f172a" stroke-width="2"></rect><rect x="451.5" y="221.5" width="107" height="221" rx="2" fill="none" stroke="#60a5fa" stroke-width="1" opacity="0.8"></rect><text x="505" y="332" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="bold" fill="#ffffff" text-anchor="middle">П10 (Ряд 2)</text><text x="505" y="347" font-size="9" fill="#93c5fd" text-anchor="middle">113 × 227 см</text></g><g stroke="#d97706" stroke-width="1.2"><line x1="-35" y1="216.5" x2="-35" y2="218.5" marker-start="url(#arrow-amber)" marker-end="url(#arrow-amber)"></line><line x1="-35" y1="216.5" x2="-11.5" y2="216.5" stroke="#f59e0b" stroke-dasharray="2,2" stroke-width="0.8"></line><line x1="-35" y1="218.5" x2="-11.5" y2="218.5" stroke="#f59e0b" stroke-dasharray="2,2" stroke-width="0.8"></line></g><text x="-40" y="219" font-size="9" font-family="'JetBrains Mono', monospace" font-weight="bold" fill="#b45309" text-anchor="end">Зазор 2 см</text><g stroke="#d97706" stroke-width="1.2"><line x1="101.5" y1="102.5" x2="103.5" y2="102.5" marker-start="url(#arrow-amber)" marker-end="url(#arrow-amber)"></line></g><rect x="84.5" y="70" width="36" height="18" rx="3" fill="#fffbeb" stroke="#fde68a" stroke-width="1"></rect><text x="102.5" y="82" font-size="8.5" font-family="'JetBrains Mono', monospace" font-weight="bold" fill="#b45309" text-anchor="middle">2 см</text><g stroke="#2563eb" stroke-width="1.2"><line x1="-11.5" y1="460" x2="101.5" y2="460" marker-start="url(#arrow-blue)" marker-end="url(#arrow-blue)"></line><line x1="-11.5" y1="445.5" x2="-11.5" y2="468" stroke-dasharray="2,2" stroke-width="0.8"></line><line x1="101.5" y1="445.5" x2="101.5" y2="468" stroke-dasharray="2,2" stroke-width="0.8"></line></g><rect x="25" y="450" width="40" height="20" rx="3" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"></rect><text x="45" y="464" font-size="10.5" font-family="'JetBrains Mono', monospace" font-weight="bold" fill="#1d4ed8" text-anchor="middle">113 см</text><g stroke="#1e293b" stroke-width="1.2"><line x1="-11.5" y1="488" x2="561.5" y2="488" marker-start="url(#arrow)" marker-end="url(#arrow)"></line><line x1="-11.5" y1="468" x2="-11.5" y2="496" stroke-dasharray="2,2" stroke-width="0.8"></line><line x1="561.5" y1="445.5" x2="561.5" y2="496" stroke-dasharray="2,2" stroke-width="0.8"></line></g><rect x="235" y="478" width="80" height="20" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"></rect><text x="275" y="492" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">573 см (Всего)</text><g stroke="#2563eb" stroke-width="1.2"><line x1="600" y1="-10.5" x2="600" y2="445.5" marker-start="url(#arrow-blue)" marker-end="url(#arrow-blue)"></line><line x1="561.5" y1="-10.5" x2="610" y2="-10.5" stroke-dasharray="2,2" stroke-width="0.8"></line><line x1="561.5" y1="445.5" x2="610" y2="445.5" stroke-dasharray="2,2" stroke-width="0.8"></line></g><g transform="translate(615, 217.5) rotate(90)"><rect x="-42" y="-10" width="84" height="20" rx="4" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"></rect><text x="0" y="4" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="bold" fill="#1d4ed8" text-anchor="middle">456 см (Массив)</text></g><g stroke="#475569" stroke-width="1"><line x1="575" y1="-10.5" x2="575" y2="216.5" marker-start="url(#arrow)" marker-end="url(#arrow)"></line></g><g transform="translate(568, 103) rotate(-90)"><text x="0" y="0" font-size="9" font-family="'JetBrains Mono', monospace" font-weight="bold" fill="#334155" text-anchor="middle">227 см</text></g><rect x="-11.5" y="-10.5" width="573" height="10.5" fill="#fef2f2" opacity="0.7" stroke="#ef4444" stroke-width="0.5" stroke-dasharray="2,2"></rect><rect x="-11.5" y="435" width="573" height="10.5" fill="#fef2f2" opacity="0.7" stroke="#ef4444" stroke-width="0.5" stroke-dasharray="2,2"></rect><rect x="-11.5" y="0" width="11.5" height="435" fill="#fef2f2" opacity="0.7" stroke="#ef4444" stroke-width="0.5" stroke-dasharray="2,2"></rect><rect x="550" y="0" width="11.5" height="435" fill="#fef2f2" opacity="0.7" stroke="#ef4444" stroke-width="0.5" stroke-dasharray="2,2"></rect></svg>
+        </div>
+
+        <!-- Legend Footer -->
+        <div class="p-4 bg-slate-50 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4 text-xs">
+          <div class="flex items-center gap-6">
+            <div class="flex items-center gap-2">
+              <span class="w-3.5 h-3.5 rounded bg-blue-700 border border-blue-900 inline-block"></span>
+              <span class="text-slate-700 font-medium">Солнечная панель (227×113 см)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-3.5 h-3.5 rounded border-2 border-dashed border-slate-400 bg-slate-100 inline-block"></span>
+              <span class="text-slate-700 font-medium">Граница крыши (550×435 см)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-3.5 h-1 bg-amber-500 inline-block rounded-full"></span>
+              <span class="text-slate-700 font-medium">Технологический зазор (2 см)</span>
+            </div>
+          </div>
+          <div class="text-slate-500 font-mono-code text-[11px]">
+            Масштаб пропорциональный 100%
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Engineering Alert on Height -->
+      <div class="bg-amber-50 border border-amber-200/90 rounded-xl p-4 flex items-start gap-3.5 text-amber-900"><div class="p-1.5 rounded-lg bg-amber-100 text-amber-700 shrink-0 mt-0.5"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg></div><div class="space-y-1 text-xs sm:text-sm"><h4 class="font-bold text-amber-950 flex items-center gap-2">Инженерное примечание: превышение ширины ската (+23 см) и высоты (+21 см)</h4><p class="text-amber-800 leading-relaxed">Для 10 панелей (2 ряда по 5 модулей) ширина массива составляет <b>573 см</b> (5 × 113 + 4 × 2 см) при ширине крыши <b>550 см</b> — превышение <b>23 см</b> (боковые свесы по 11.5 см с обеих сторон). Высота массива — <b>456 см</b> при высоте ската <b>435 см</b> (превышение <b>21 см</b>). Суммарная мощность 10 панелей составляет <b>6.15 кВт</b> (10 × 615 Вт). Требуется учет свесов или применение альбомной схемы.</p></div></div>
+    </div>
+
+    <!-- Right Sidebar Specifications (4 Cols) -->
+    <div class="lg:col-span-4 flex flex-col gap-5">
+
+      <!-- Spec Card -->
+      <div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-5 space-y-4"><h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 border-b border-slate-100 pb-3 flex items-center justify-between"><span class="">Спецификация раскладки</span><span class="text-blue-600 bg-blue-50 px-2 py-0.5 rounded text-[11px] font-mono-code font-bold">2 × 5 = 10 шт</span></h3><div class="grid grid-cols-2 gap-3 text-xs"><div class="p-3 bg-slate-50 rounded-xl border border-slate-100"><span class="text-slate-400 block text-[11px]">Кол-во панелей</span><span class="text-lg font-bold text-slate-800 font-mono-code">10 шт.</span></div><div class="p-3 bg-slate-50 rounded-xl border border-slate-100"><span class="text-slate-400 block text-[11px]">Ориентация</span><span class="text-sm font-bold text-slate-800">Портретная</span></div><div class="p-3 bg-slate-50 rounded-xl border border-slate-100"><span class="text-slate-400 block text-[11px]">Рядов по высоте</span><span class="text-base font-bold text-slate-800 font-mono-code">2 ряда</span></div><div class="p-3 bg-slate-50 rounded-xl border border-slate-100"><span class="text-slate-400 block text-[11px]">Колонок в ширину</span><span class="text-base font-bold text-slate-800 font-mono-code">5 колонок</span></div></div><div class="space-y-2 pt-1"><div class="text-xs font-semibold text-slate-700">Расчет габаритов массива:</div><div class="bg-slate-50 rounded-xl p-3 border border-slate-100 space-y-2.5 text-xs font-mono-code"><div><div class="flex justify-between text-slate-500 text-[11px]"><span class="">Ширина массива (5 модулей + 4 зазора):</span></div><div class="flex justify-between font-bold text-slate-800 mt-0.5"><span class="">5 × 113 + 4 × 2 см</span><span class="text-amber-600">= 573 см</span></div><div class="text-[10px] text-amber-700 mt-0.5">Превышение ширины крыши: 573 - 550 = +23 см (боковые свесы по 11.5 см)</div></div><div class="border-t border-slate-200/60 pt-2"><div class="flex justify-between text-slate-500 text-[11px]"><span class="">Высота массива (2 ряда + 1 зазор):</span></div><div class="flex justify-between font-bold text-slate-800 mt-0.5"><span class="">2 × 227 + 1 × 2 см</span><span class="text-amber-600">= 456 см</span></div><div class="text-[10px] text-amber-700 mt-0.5">Превышение ската: 456 - 435 = +21 см (требует свес)</div></div></div></div><div class="border-t border-slate-100 pt-3 space-y-2"><div class="text-xs font-semibold text-slate-700">Энергетический потенциал (оценка):</div><div class="p-3 bg-blue-50/60 rounded-xl border border-blue-100 space-y-1.5 text-xs"><div class="flex justify-between text-slate-600"><span class="">Мощность 1 модуля:</span><span class="font-bold font-mono-code text-slate-900">~615 Вт</span></div><div class="flex justify-between text-slate-600"><span class="">Суммарная пиковая мощность (10 шт):</span><span class="font-bold font-mono-code text-blue-700 text-sm">~6.15 кВт</span></div><div class="flex justify-between text-slate-600"><span class="">Площадь фотоэлементов:</span><span class="font-bold font-mono-code text-slate-900">25.65 м²</span></div></div></div></div>
+
+      <!-- Mounting Hardware Checklist -->
+      <div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-5 space-y-3">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500">
+          Крепежные элементы (BOM)
+        </h4>
+        <ul class="space-y-2 text-xs text-slate-700"><li class="flex items-center justify-between py-1 border-b border-slate-50"><span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>Направляющие профили (рейлинги)</span><span class="font-bold font-mono-code text-slate-900">4 линии × ~5.8 м</span></li><li class="flex items-center justify-between py-1 border-b border-slate-50"><span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>Межпанельные прижимы (20 мм зазор)</span><span class="font-bold font-mono-code text-slate-900">16 шт.</span></li><li class="flex items-center justify-between py-1 border-b border-slate-50"><span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>Концевые торцевые прижимы</span><span class="font-bold font-mono-code text-slate-900">8 шт.</span></li><li class="flex items-center justify-between py-1"><span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>Кронштейны крепления к стропилам</span><span class="font-bold font-mono-code text-slate-900">~20-24 шт.</span></li></ul>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-auto border-t border-slate-200 bg-white py-4 text-center text-xs text-slate-500">Расчет выполнен по ТЗ: 10 панелей 227×113 см (портрет, 2×5, 615 Вт), Зазор 2 см, Крыша 550×435 см.</footer>
+
+
+
+
+
+</body></html>
